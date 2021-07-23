@@ -3,7 +3,7 @@ that have special meanings to the compiler.
 # Keywords are part of the syntax and they cannot be used as an identifier
 
 - auto
-- double
+- double : store decimals and exponentials
 - int
 - struct
 - break
@@ -11,7 +11,16 @@ that have special meanings to the compiler.
 - long
 - switch
 - case
-- enum : 
+- enum : enumeration - is a data type that consists of integral constants
+    > enum flag {const1, const2, ... constN};
+###
+enum suit {
+    club = 0,
+    diamonds = 10,
+    hearts = 20,
+    spades = 3,
+};
+###
 - register
 - typedef
 - char
@@ -31,6 +40,8 @@ that have special meanings to the compiler.
 - sizeof
 - volatile
 - const
+    > const double PI = 3.14...
+    > #define PI 3.14...
 - float
 - short
 - unsigned

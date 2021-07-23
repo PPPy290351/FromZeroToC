@@ -21,5 +21,17 @@ int main() {
     //FIXME: special case
     int z = 5;
     if(z = 4) printf("Hello World\n"); // assign operation , result is z value -> if(4) 
+
+
+    // Increment and Decrement Operators
+    float c1 = 10.5, d1 = 100.5;
+    printf("++c1 = %f \n", ++c1);
+    printf("--d1 = %f \n", --d1);
+    printf("++c1 + ++d1 = %f \n", ++c1 + ++d1); // @ 先加自己(++), 再加別人(d1)
+    /* // ! Explain
+    If you use the ++ operator as a prefix like: ++var, the value of var is incremented by 1; then it returns the value.
+    If you use the ++ operator as a postfix like: var++, the original value of var is returned first; then var is incremented by 1. 
+    */
+
     return 0;
 }
