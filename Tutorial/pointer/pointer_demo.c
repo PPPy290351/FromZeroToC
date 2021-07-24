@@ -51,13 +51,22 @@ int main(int argc, char const *argv[])
         output[i] = key_arr[i] ^ secret_arr[i % 8];
     }
 
-
+    char revert[64] = {0};
+    char * revertIndex;
+    revertIndex = revert;
+    
+    for(int i=0; i<32; i++, revertIndex+=2){
+        sprintf(revertIndex, "%02x", output[i] ^ secret_arr[i % 8]);
+        // sprintf(revertIndex, "%02x", output[i]);
+    }
 
 
     for (int i = 0; i < 32; i++)
     {
-        printf("%d : 0x%x -> 0x%x\n", i, key_arr[i], output[i]);
+        printf("%d : 0x%02x -> 0x%02x\n", i, key_arr[i], output[i]);
     }
+
+    printf("Revert key : %s\n", revert);
     
     // char * string = "Hello";
     // unsigned char byte = *string++;
