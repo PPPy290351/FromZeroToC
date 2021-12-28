@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
     */
     c = a ^ b;
     printf("result of XOR : %d\n", c);
-    // Simple "Complement" ,  It changes 1 to 0 and 0 to 1. It is denoted by ~.
+    // Simple "Complement"(按位補碼運算符) ,  It changes 1 to 0 and 0 to 1. It is denoted by ~.
     /*
     example a:  [complement + 1] -> 2's complement
     00001100
