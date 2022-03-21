@@ -2,9 +2,9 @@
 #include <linux/kernel.h>
 #include <list.h>
 
+#define PRINT_LINE() printf("---------------------------\n")
 
-// TODO: list_entry
-// TODO: list_for_each
+#define LIST_FOR_EACH_MACRO 1
 
 struct my_list_head {
 	struct my_list_head * prev;
@@ -37,12 +37,15 @@ int main(void)
 	cmd1.a = 10;
 	my_list_add_tail( &cmd1.list, head );
 	my_show_list( head );
-	printf("---------------------------\n");
+	PRINT_LINE();
 	cmd2.a = 33;
 	my_list_add_tail( &cmd2.list, head );
 	my_show_list( head );
-	// cmd3.a = 22;
-	// list_add_tail(  );
+	PRINT_LINE();
+	cmd3.a = 22;
+	my_list_add_tail( &cmd3.list, head );
+	my_show_list( head );
+	PRINT_LINE();
 
 
 	return 0;
@@ -75,11 +78,23 @@ void my_list_add_tail(struct my_list_head * node, struct my_list_head * head)
 
 void my_show_list(struct my_list_head * head)
 {
+#if LIST_FOR_EACH_MACRO
 	struct my_list_head * iterator;
 	struct cmd * cmd_result;
-
-	for (iterator=head->next; iterator != head; iterator=iterator->next) {
-		cmd_result = container_of( iterator, struct cmd, list );
+	printf("=== LIST_FOR_EACH : %d ===\n", LIST_FOR_EACH_MACRO);
+	list_for_each( iterator, head ) {
+		cmd_result = list_entry( iterator, struct cmd, list );
 		printf("[List] a : %d\n", cmd_result->a);
 	}
+#else
+	struct my_list_head * iterator;
+	struct cmd * cmd_result;
+	printf("=== LIST_FOR_EACH : %d ===\n", LIST_FOR_EACH_MACRO);
+	for (iterator=head->next; iterator != head; iterator=iterator->next) {
+		// cmd_result = container_of( iterator, struct cmd, list );
+		/* container_of == list_entry */
+		cmd_result = list_entry( iterator, struct cmd, list );
+		printf("[List] a : %d\n", cmd_result->a);
+	}
+#endif
 }
